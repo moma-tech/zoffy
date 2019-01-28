@@ -1,0 +1,19 @@
+spring:
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  profiles:
+    active: local
+server:
+  port: 8123
+
+## Swagger
+swagger:
+  enable: true
+  title: Swagger Api Console
+  description:
+  version: 1.0
+  contact:
+    name: ivan
+    url: a.b.c.d
+    mail: a@b.c.d
+
