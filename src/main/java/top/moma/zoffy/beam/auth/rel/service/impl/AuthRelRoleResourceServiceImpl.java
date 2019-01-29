@@ -7,14 +7,12 @@ import top.moma.zoffy.beam.auth.rel.model.domain.AuthRelRoleResource;
 import top.moma.zoffy.beam.auth.rel.service.AuthRelRoleResourceService;
 
 /**
- * <p>
- *  服务实现类
- * </p>
+ * 服务实现类
  *
  * @author Ivan
  * @since 2019-01-29
  */
 @Service
-public class AuthRelRoleResourceServiceImpl extends SuperServiceImpl<AuthRelRoleResourceDao, AuthRelRoleResource> implements AuthRelRoleResourceService {
-
-}
+public class AuthRelRoleResourceServiceImpl
+    extends SuperServiceImpl<AuthRelRoleResourceDao, AuthRelRoleResource>
+    implements AuthRelRoleResourceService {}
