@@ -8,11 +8,12 @@ import top.moma.m78.framework.interception.filter.RequestFilter;
 
 /**
  * WebFilterConfiguration
- * <p> TODO
+ *
+ * <p>Filter Configuration
  *
  * @author ivan
  * @version 1.0 Created by ivan on 1/17/19 - 4:36 PM.
- **/
+ */
 @SpringBootConfiguration
 public class WebFilterConfiguration {
 

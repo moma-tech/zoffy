@@ -18,7 +18,7 @@
          FILEDEBUG对应debug级别，文件名以log-debug-xxx.log形式命名
          stdout将日志信息输出到控制上，为方便开发测试使用
   -->
-  <contextName>ServiceMonolith</contextName>
+  <contextName>Zoffy</contextName>
 
   <!-- 彩色日志 -->
   <!-- 彩色日志依赖的渲染类 -->
@@ -29,9 +29,9 @@
   <conversionRule conversionWord="wEx"
     converterClass="org.springframework.boot.logging.logback.ExtendedWhitespaceThrowableProxyConverter"/>
 
-  <property name="LOG_PATH" value="/home/ivan/tmp"/>
+  <!--<property name="LOG_PATH" value="/home/ivan/tmp"/>-->
   <!--设置系统日志目录-->
-  <property name="APPDIR" value="ServiceMonolith"/>
+  <!--<property name="APPDIR" value="ServiceMonolith"/>-->
 
   <!-- 日志记录器，日期滚动记录 -->
   <appender name="FILEERROR" class="ch.qos.logback.core.rolling.RollingFileAppender">

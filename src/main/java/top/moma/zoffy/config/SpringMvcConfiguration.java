@@ -8,9 +8,12 @@ import org.springframework.boot.autoconfigure.condition.ConditionalOnMissingBean
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.converter.HttpMessageConverter;
 import org.springframework.web.context.request.RequestContextListener;
+import org.springframework.web.servlet.HandlerExceptionResolver;
 import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
+import top.moma.m78.framework.customizer.exception.GeneralExceptionHandler;
 import top.moma.m78.framework.customizer.server.UndertowServerFactoryCustomizer;
 import top.moma.m78.framework.wrapper.HttpMessageConverterWrapper;
+import top.moma.zoffy.interception.aspect.LogAspect;
 
 /**
  * SpringMvcConfiguration
@@ -22,11 +25,21 @@ import top.moma.m78.framework.wrapper.HttpMessageConverterWrapper;
 @SpringBootConfiguration
 public class SpringMvcConfiguration implements WebMvcConfigurer {
 
+  @Bean
+  public LogAspect getLogAspect(){
+    return new LogAspect();
+  }
 
   @Bean
   @ConditionalOnClass(Undertow.class)
   public UndertowServerFactoryCustomizer undertowServerFactoryCustomizer() {
     return new UndertowServerFactoryCustomizer();
+  }
+
+  @Override
+  public void configureHandlerExceptionResolvers(
+          List<HandlerExceptionResolver> exceptionResolvers) {
+    exceptionResolvers.add(new GeneralExceptionHandler());
   }
 
   @Override

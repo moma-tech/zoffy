@@ -107,3 +107,12 @@ fabric.properties
 # Editor-based Rest Client
 .idea/httpRequests
 
+/zoffy.iml
+.idea/compiler.xml
+.idea/encodings.xml
+.idea/google-java-format.xml
+.idea/misc.xml
+.idea/modules.xml
+.idea/vcs.xml
+zoffy.iml
+.idea/saveactions_settings.xml

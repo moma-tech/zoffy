@@ -1,8 +1,8 @@
 ## Spring CONFIG
 spring:
   datasource:
-    driver-class-name: com.mysql.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/open-api?useUnicode=true&autoReconnect=true&useSSL=false&characterEncoding=UTF8&allowMultiQueries=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/open-api?useUnicode=true&autoReconnect=true&useSSL=false&characterEncoding=UTF8&allowMultiQueries=true&tinyInt1isBit=false&serverTimezone=Asia/Shanghai
     username: root
     password: Ivanna83@
     type: com.zaxxer.hikari.HikariDataSource

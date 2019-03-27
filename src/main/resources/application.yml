@@ -6,6 +6,15 @@ spring:
 server:
   port: 8123
 
+## Mybatis
+mybatis-plus:
+  global-config:
+    sql-parser-cache: false
+    db-config:
+      id-type: uuid
+  configuration:
+    cache-enabled: false
+
 ## Swagger
 swagger:
   enable: true
@@ -16,4 +25,8 @@ swagger:
     name: ivan
     url: a.b.c.d
     mail: a@b.c.d
+
+## Log path
+logging:
+  path: logs/zoffy
 
