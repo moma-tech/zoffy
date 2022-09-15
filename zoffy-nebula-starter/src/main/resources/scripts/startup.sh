@@ -8,9 +8,6 @@
 # logs/startup.log: 记录启动日志
 # logs/back目录: 项目运行日志备份目录
 # nohup后台运行
-#
-# author: geekidea
-# date: 2018-12-2
 #======================================================================
 
 # 项目名称
@@ -60,12 +57,15 @@ fi
 # -Xms256m:设置JVM初始内存。此值可以设置与-Xmx相同,以避免每次垃圾回收完成后JVM重新分配内存
 # -Xmn512m:设置年轻代大小为512m。整个JVM内存大小=年轻代大小 + 年老代大小 + 持久代大小。
 #          持久代一般固定大小为64m,所以增大年轻代,将会减小年老代大小。此值对系统性能影响较大,Sun官方推荐配置为整个堆的3/8
+#
 # -XX:MetaspaceSize=64m:存储class的内存大小,该值越大触发Metaspace GC的时机就越晚
 # -XX:MaxMetaspaceSize=320m:限制Metaspace增长的上限，防止因为某些情况导致Metaspace无限的使用本地内存，影响到其他程序
 # -XX:-OmitStackTraceInFastThrow:解决重复异常不打印堆栈信息问题
 #==========================================================================================
-JAVA_OPT="-server -Xms256m -Xmx512m -Xmn128m -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=512m"
+JAVA_OPT="-server -Xms256m -Xmx512m -Xmn128m -Xss512k -XX:MetaspaceSize=128m -XX:MaxMetaspaceSize=512m"
 JAVA_OPT="${JAVA_OPT} -XX:-OmitStackTraceInFastThrow"
+JAVA_OPT="${JAVA_OPT} -XX:+DisableExplicitGC -XX:MaxGCPauseMillis=50"
+JAVA_OPT="${JAVA_OPT} -Djava.security.egd=file:/dev/./urandom"
 
 #=======================================================
 # 将命令启动相关日志追加到日志文件
@@ -83,7 +83,6 @@ STARTUP_LOG="${STARTUP_LOG}application bin  path: ${BIN_PATH}\n"
 STARTUP_LOG="${STARTUP_LOG}application config path: ${CONFIG_DIR}\n"
 # 打印JVM配置
 STARTUP_LOG="${STARTUP_LOG}application JAVA_OPT : ${JAVA_OPT}\n"
-
 
 # 打印启动命令
 STARTUP_LOG="${STARTUP_LOG}application startup command: nohup java ${JAVA_OPT} -jar ${BASE_PATH}/boot/${APPLICATION_JAR} --spring.config.location=${CONFIG_DIR} >/dev/null 2>&1 &\n"
