@@ -27,4 +27,9 @@ public class UserController {
   public List<User> listUser() {
     return userService.list();
   }
+
+  @GetMapping("/qById")
+  public User qUser() {
+    return userService.qById(74);
+  }
 }
