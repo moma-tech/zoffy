@@ -4,6 +4,7 @@ import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import top.moma.zoffy.rbac.user.entity.User;
+import top.moma.zoffy.rbac.user.response.UserInfo;
 import top.moma.zoffy.rbac.user.service.UserService;
 
 import java.util.List;
@@ -24,8 +25,8 @@ public class UserController {
   }
 
   @GetMapping("/list")
-  public List<User> listUser() {
-    return userService.list();
+  public List<UserInfo> listUser() {
+    return userService.getUserInfo();
   }
 
   @GetMapping("/qById")

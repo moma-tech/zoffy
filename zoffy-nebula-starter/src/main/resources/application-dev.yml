@@ -8,6 +8,11 @@ spring:
     url: jdbc:mysql://155.138.159.168:3306/moma?tinyInt1isBit=false&useUnicode=true&autoReconnect=true&useSSL=false&characterEncoding=UTF8&allowMultiQueries=true&serverTimezone=Asia/Shanghai&nullCatalogMeansCurrent=true
     username: ivan
     password: 1qaw3@123
+  sql:
+    init:
+      mode: always
+      schema-locations: classpath*:sql/schema.sql
+      data-locations: classpath*:sql/data.sql
 
 mybatis-plus:
   configuration:
