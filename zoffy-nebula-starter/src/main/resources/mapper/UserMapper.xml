@@ -8,5 +8,25 @@
         where user_id = #{userId};
     </select>
 
+    <select id="twoUsers" parameterType="Integer" resultType="top.moma.zoffy.rbac.user.entity.User">
+        select *
+        from (
+                 select *
+                 from user
+                 union all
+                 select *
+                 from user2) t
+        where user_id = #{userId}
+    </select>
 
+    <select id="twoUsersPage" parameterType="Integer" resultType="top.moma.zoffy.rbac.user.entity.User">
+        select *
+        from (
+                 select *
+                 from user user1
+                 union all
+                 select *
+                 from user2 user2) t
+        where t.phone_no = #{phoneNo}
+    </select>
 </mapper>

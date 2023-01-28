@@ -33,6 +33,21 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
         </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-webflux</artifactId>
+        </dependency>
+        <!-- https://mvnrepository.com/artifact/io.netty/netty-resolver-dns-native-macos -->
+        <!--        <dependency>-->
+        <!--            <groupId>io.netty</groupId>-->
+        <!--            <artifactId>netty-resolver-dns-native-macos</artifactId>-->
+        <!--            <version>4.1.87.Final</version>-->
+        <!--            <classifier>osx-aarch_64</classifier>-->
+        <!--        </dependency>-->
+        <dependency>
+            <groupId>io.netty</groupId>
+            <artifactId>netty-all</artifactId>
+        </dependency>
 
         <!-- Runtime Scope-->
         <dependency>
@@ -76,6 +91,7 @@
                     <include>mapper/*.xml</include>
                     <include>mapper/**/*.xml</include>
                     <include>resources/**</include>
+                    <include>sql/*.sql</include>
                     <include>*.xml</include>
                     <include>*.properties</include>
                     <include>*.json</include>

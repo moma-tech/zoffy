@@ -1,5 +1,7 @@
 package top.moma.zoffy.rbac.user.service.impl;
 
+import com.baomidou.mybatisplus.core.metadata.IPage;
+import com.baomidou.mybatisplus.extension.plugins.pagination.Page;
 import com.baomidou.mybatisplus.extension.service.impl.ServiceImpl;
 import com.github.yulichang.wrapper.MPJLambdaWrapper;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,5 +33,18 @@ public class UserServiceImpl extends ServiceImpl<UserMapper, User> implements Us
             .leftJoin(UserRole.class, UserRole::getUserId, User::getUserId)
             .leftJoin(Role.class, Role::getRoleId, UserRole::getRoleId);
     return userMapper.selectJoinList(UserInfo.class, mpjLambdaWrapper);
+  }
+
+  @Override
+  public List<User> getUsers(Integer userId) {
+    return userMapper.twoUsers(userId);
+  }
+
+  @Override
+  public IPage<User> getUsersPage(long pageSize, long pageIndex, Integer userId) {
+    Page<User> page = new Page();
+    page.setCurrent(pageIndex);
+    page.setSize(pageSize);
+    return userMapper.twoUsersPage(page, userId);
   }
 }
