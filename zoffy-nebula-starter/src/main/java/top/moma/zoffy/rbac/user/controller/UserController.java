@@ -15,7 +15,7 @@ import java.util.List;
 @RequestMapping("/user")
 public class UserController {
   @Autowired UserService userService;
-  @Autowired WebClientTest webClientTest;
+
 
   @PostMapping("/add")
   public User addUser(@RequestBody User user) {
