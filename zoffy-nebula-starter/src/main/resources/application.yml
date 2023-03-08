@@ -1,0 +1,13 @@
+spring:
+  datasource:
+    url: jdbc:postgresql://127.0.0.1:5432/chinook
+    username: postgres
+    password: 1qaw3@123
+  jpa:
+    hibernate:
+      naming:
+        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
+    properties:
+      hibernate:
+        integrator_provider: top.moma.zoffy.config.HibernateIntegratorProvider
+    database-platform: org.hibernate.dialect.PostgreSQLDialect

@@ -10,7 +10,7 @@
     <parent>
         <groupId>org.springframework.boot</groupId>
         <artifactId>spring-boot-starter-parent</artifactId>
-        <version>2.7.3</version>
+        <version>3.0.3</version>
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>top.moma</groupId>
@@ -38,6 +38,18 @@
                 <groupId>top.moma</groupId>
                 <artifactId>m64-common-helper</artifactId>
                 <version>1.0.0-SNAPSHOT</version>
+            </dependency>
+            <!-- postgresql-->
+            <dependency>
+                <groupId>org.postgresql</groupId>
+                <artifactId>postgresql</artifactId>
+                <version>42.5.4</version>
+            </dependency>
+            <!-- Spring & Hibernate Utilities-->
+            <dependency>
+                <groupId>io.hypersistence</groupId>
+                <artifactId>hypersistence-utils-hibernate-60</artifactId>
+                <version>3.2.0</version>
             </dependency>
         </dependencies>
     </dependencyManagement>
