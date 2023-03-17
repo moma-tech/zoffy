@@ -1,37 +1,94 @@
--- ----------------------------
--- Records of UserInfo
--- ----------------------------
-
-INSERT INTO `user`
-VALUES ('0', 'ivan@123.com', '123', 'ivan');
-
-INSERT INTO `user`
-VALUES ('2', 'ivan@123.com', '1234', 'ivan');
-
-INSERT INTO `user2`
-VALUES ('1', 'djp@123.com', '123', 'ivan');
-
-INSERT INTO `user2`
-VALUES ('2', 'djp@123.com', '123', 'ivan');
-INSERT INTO `user2`
-VALUES ('3', 'djp@123.com', '123', 'ivan');
-INSERT INTO `user2`
-VALUES ('4', 'djp@123.com', '123', 'ivan');
-INSERT INTO `user2`
-VALUES ('5', 'djp@123.com', '123', 'ivan');
-INSERT INTO `user2`
-VALUES ('6', 'djp@123.com', '123', 'ivan');
-INSERT INTO `user2`
-VALUES ('7', 'djp@123.com', '123', 'ivan');
-INSERT INTO `user2`
-VALUES ('8', 'djp@123.com', '123', 'ivan');
-INSERT INTO `user2`
-VALUES ('9', 'djp@123.com', '123', 'ivan');
-INSERT INTO `user2`
-VALUES ('10', 'djp@123.com', '123', 'ivan');
-
-INSERT INTO `role`
-VALUES ('1', 'role');
-
-INSERT INTO `user_role`
-VALUES ('1', '1', '1');
+# -- ----------------------------
+# -- Records of UserInfo
+# -- ----------------------------
+# INSERT INTO pk_gl_entries_account_code (ac_id, code, account_code, account_name, category, drcr,
+#                                         source, cal_function, cal_params, cal_level, version,
+#                                         enable, create_time, update_time)
+# VALUES (101, 1, '02-003-0002-00001', 'Accounts receivable——principal', 'disbursement', 0, 'loandata', 'ACC_BY_PERIOD',
+#         'principal', 1, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (102, 2, '05-001-0002-00003', 'Accounts payable——Onelink disbursement', 'disbursement', 1, 'cashout',
+#         'ACC_BY_PLATFORM', 'onelink,principal', 1, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (103, 3, '05-001-0002-00004', 'Accounts payable——non cash', 'disbursement', 0, 'entry', 'MINUS', '1,2', 3,
+#         '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (104, 4, '02-003-0001-00006', 'Accounts receivable——interest、processing fee', 'revenue accrued', 0, 'entry',
+#         'SUM', '5,6,7', 3, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (105, 5, '06-001-0002-00001', 'Interest Income', 'revenue accrued', 1, 'loandata', 'ACC_BY_PERIOD', 'interest',
+#         1, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (106, 6, '06-001-0001-00001', 'Processing Fee income', 'revenue accrued', 1, 'loandata', 'ACC_BY_PERIOD',
+#         'service_fee,pre_service_fee', 1, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (107, 7, '05-001-0006-00009', 'Output sales tax', 'revenue accrued', 1, 'manual', 'MANUAL', '0,4', 2, '202303',
+#         1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (108, 8, '07-003-0001-00001', 'written off directly', 'principal write off', 0, 'loandata', 'ACC_BY_PERIOD',
+#         'principal_reduced', 1, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (109, 9, '07-003-0001-00001', 'written off directly', 'interest/fee/ write off', 0, 'loandata', 'ACC_BY_PERIOD',
+#         'service_fee_reduced,gst_reduced,interest_reduced,penalty_reduced', 1, '202303', 1, '2023-03-13 02:30:34.0',
+#         '2023-03-13 02:30:34.0'),
+#        (110, 10, '02-003-0002-00001', 'Accounts receivable——principal', 'principal write off', 1, 'loandata',
+#         'ACC_BY_PERIOD', 'principal_reduced', 1, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0');
+# INSERT INTO pk_gl_entries_account_code (ac_id, code, account_code, account_name, category, drcr,
+#                                         source, cal_function, cal_params, cal_level, version,
+#                                         enable, create_time, update_time)
+# VALUES (111, 11, '02-003-0001-00006', 'Accounts receivable——interest/processing fee/gst', 'interest/fee/ write off', 1,
+#         'loandata', 'ACC_BY_PERIOD', 'service_fee_reduced,gst_reduced,interest_reduced,penalty_reduced', 1, '202303', 1,
+#         '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (112, 12, '07-003-0001-00001', 'written off directly', 'Bad debt', 0, 'manual', 'MANUAL', '1,13', 2, '202303', 1,
+#         '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (113, 13, '02-003-0002-00002', 'Provision against doubtful finances', 'Bad debt', 1, 'manual', 'MANUAL', '1,12',
+#         2, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (114, 14, '02-003-0001-00008', 'Accounts receivable——Onelink', 'collection', 0, 'cashin', 'ACC_BY_PLATFORM',
+#         'onelink,amount_paid', 1, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (115, 15, '02-003-0001-00009', 'Accounts receivable——Offlinerepay', 'collection', 0, 'cashin', 'ACC_BY_PLATFORM',
+#         'offlinerepay,amount_paid', 1, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (116, 16, '02-003-0001-00009', 'Accounts receivable——OPS', 'collection', 0, 'cashin', 'ACC_BY_PLATFORM',
+#         'easypaisa,amount_paid', 1, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (117, 17, '02-003-0001-00009', 'Accounts receivable——UPBS', 'collection', 0, 'cashin', 'ACC_BY_PLATFORM',
+#         'epubps,amount_paid', 1, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (118, 18, '02-003-0001-00011', 'Accounts receivable——Jazzcash', 'collection', 0, 'cashin', 'ACC_BY_PLATFORM',
+#         'jazzcash,amount_paid', 1, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (119, 19, '02-003-0001-00012', 'Accounts receivable——non cash', 'collection', 0, 'entry', 'SUM_MINUS',
+#         '5,14,15,16,17,18,20,21,22,23', 3, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (120, 20, '02-003-0001-00006', 'Accounts receivable——interest/processing fee/gst', 'collection', 1, 'loandata',
+#         'ACC_BY_PERIOD', 'pre_service_fee_paid,pre_gst_paid,service_fee_paid,gst_paid,interest_paid', 1, '202303', 1,
+#         '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0');
+# INSERT INTO pk_gl_entries_account_code (ac_id, code, account_code, account_name, category, drcr,
+#                                         source, cal_function, cal_params, cal_level, version,
+#                                         enable, create_time, update_time)
+# VALUES (121, 21, '02-003-0002-00001', 'Accounts receivable——principal', 'collection', 1, 'loandata', 'ACC_BY_PERIOD',
+#         'principal_paid', 1, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (122, 22, '06-001-0001-00002', 'Penalty income', 'revenue received', 1, 'loandata', 'ACC_BY_PERIOD',
+#         'penalty_paid', 1, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (123, 23, '05-001-0003-00002', 'Overrepayment of loan', 'collection', 1, 'cashin', 'ACC_BY_PERIOD',
+#         'overpaid_amount', 1, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (124, 24, '05-001-0002-00003', 'Payable from 1Link against Disbursement',
+#         'Disbursement of Funds through Onelink', 0, 'apar', 'ACC_BY_PLATFORM', 'onelink-outflow,settle_amount_outflow',
+#         1, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (125, 25, '02-001-0002-00006', 'MCB Saving (1002916)', 'Disbursement of Funds through Onelink', 1, 'apar',
+#         'ACC_BY_PLATFORM', 'onelink-outflow,settle_amount_outflow', 1, '202303', 1, '2023-03-13 02:30:34.0',
+#         '2023-03-13 02:30:34.0'),
+#        (126, 26, '02-001-0002-00006', 'MCB Saving (1002916)', 'Collection of Funds through Onelink', 0, 'apar',
+#         'ACC_BY_PLATFORM', 'onelink-inflow,settle_amount_inflow', 1, '202303', 1, '2023-03-13 02:30:34.0',
+#         '2023-03-13 02:30:34.0'),
+#        (127, 27, '02-003-0001-00008', 'Receivable from 1Link against collection', 'Collection of Funds through Onelink',
+#         1, 'apar', 'ACC_BY_PLATFORM', 'onelink-inflow,settle_amount_inflow', 1, '202303', 1, '2023-03-13 02:30:34.0',
+#         '2023-03-13 02:30:34.0'),
+#        (128, 28, '02-001-0002-00012', 'MMBL Saving (8313)', 'Collection of Funds through Jazzcash', 0, 'apar',
+#         'ACC_BY_PLATFORM', 'jazzcash,settle_amount_inflow', 1, '202303', 1, '2023-03-13 02:30:34.0',
+#         '2023-03-13 02:30:34.0'),
+#        (129, 29, '02-003-0001-00008', 'Receivable from Jazzcash against collection',
+#         'Collection of Funds through Jazzcash', 1, 'apar', 'ACC_BY_PLATFORM', 'jazzcash,settle_amount_inflow', 1,
+#         '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (130, 30, '02-003-0001-00009', 'Receivable from OPS/UBPS against collection',
+#         'Collection of funds through UBPS/OPS', 0, 'apar', 'ACC_BY_PLATFORM', 'ubps&ops,settle_amount_inflow', 1,
+#         '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0');
+# INSERT INTO pk_gl_entries_account_code (ac_id, code, account_code, account_name, category, drcr,
+#                                         source, cal_function, cal_params, cal_level, version,
+#                                         enable, create_time, update_time)
+# VALUES (131, 31, '02-001-0002-00003', 'Telenor Bank (2235002)', 'Collection of funds through UBPS/OPS', 1, 'apar',
+#         'ACC_BY_PLATFORM', 'ubps&ops,settle_amount_inflow', 1, '202303', 1, '2023-03-13 02:30:34.0',
+#         '2023-03-13 02:30:34.0'),
+#        (132, 32, '02-001-0002-00001', 'MCB Bank Limited (1002873)',
+#         'Collection of Funds by Interbank Funds Transfer by customer', 0, 'apar', 'ACC_BY_PLATFORM',
+#         'offline,settle_amount_inflow', 1, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0'),
+#        (133, 33, '02-003-0001-00008', 'Receivable from Offline against collection',
+#         'Collection of Funds by Interbank Funds Transfer by customer', 1, 'apar', 'ACC_BY_PLATFORM',
+#         'offline,settle_amount_inflow', 1, '202303', 1, '2023-03-13 02:30:34.0', '2023-03-13 02:30:34.0');
