@@ -1,11 +1,10 @@
 package top.moma.zoffy.config;
 
 import io.hypersistence.utils.hibernate.type.util.ClassImportIntegrator;
+import java.util.List;
 import org.hibernate.integrator.spi.Integrator;
 import org.hibernate.jpa.boot.spi.IntegratorProvider;
 import top.moma.zoffy.chinook.track.entity.Track;
-
-import java.util.List;
 
 /**
  * HibernateIntegratorProvider

@@ -35,7 +35,15 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-validation</artifactId>
         </dependency>
 
         <!-- DataBase-->
@@ -55,6 +63,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-devtools</artifactId>
             <scope>runtime</scope>
+        </dependency>
+
+        <!-- Knife4j Swagger -->
+        <dependency>
+            <groupId>com.github.xiaoymin</groupId>
+            <artifactId>knife4j-openapi3-jakarta-spring-boot-starter</artifactId>
+            <version>4.0.0</version>
         </dependency>
     </dependencies>
 
@@ -85,7 +100,7 @@
             </resource>
             <!-- 过滤脚本文件到bin目录 -->
             <resource>
-                <directory>zoffy-nebula-starter/src/main/resources/scripts</directory>
+                <directory>src/main/resources/scripts</directory>
                 <filtering>true</filtering>
                 <targetPath>bin</targetPath>
                 <includes>
@@ -95,14 +110,15 @@
             </resource>
             <!-- 过滤模版文件到template目录 -->
             <resource>
-                <directory>zoffy-nebula-starter/src/main/resources/template</directory>
+                <directory>src/main/resources/templates</directory>
                 <filtering>true</filtering>
-                <targetPath>template</targetPath>
+                <targetPath>templates</targetPath>
                 <includes>
                     <include>*.csv</include>
                     <include>*.xls</include>
                     <include>*.xlsx</include>
                     <include>*.doc</include>
+                    <include>*.html</include>
                 </includes>
             </resource>
         </resources>

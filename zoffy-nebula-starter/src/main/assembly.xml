@@ -30,8 +30,8 @@
 
         <!-- 指定输出target/excel中的配置文件到excel目录中 -->
         <fileSet>
-            <directory>${build.outputDirectory}/template</directory>
-            <outputDirectory>template</outputDirectory>
+            <directory>${build.outputDirectory}/templates</directory>
+            <outputDirectory>templates</outputDirectory>
             <fileMode>0644</fileMode>
         </fileSet>
 
