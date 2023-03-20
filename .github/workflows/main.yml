@@ -2,7 +2,7 @@ name: Format
 
 on:
   push:
-    branches: [ spring3.0 ]
+    branches: [ main ]
 
 jobs:
   formatting:
