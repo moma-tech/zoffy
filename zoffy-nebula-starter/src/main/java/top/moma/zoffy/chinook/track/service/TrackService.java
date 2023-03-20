@@ -54,7 +54,8 @@ public class TrackService {
   @Transactional(readOnly = true)
   public Track.TrackRecord getTrackRecordWithTuple(Integer trackId) {
     String sql =
-        "SELECT t.name,a.title,t.composer FROM Track t JOIN Album a ON t.album.albumId=a.albumId where t.trackId=:id";
+        "SELECT t.name,a.title,t.composer FROM Track t JOIN Album a ON t.album.albumId=a.albumId"
+            + " where t.trackId=:id";
     Query<Track.TrackRecord> query =
         entityManager.createQuery(sql).setParameter("id", trackId).unwrap(Query.class);
     Track.TrackRecord trackRecord =

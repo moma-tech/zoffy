@@ -14,6 +14,7 @@ public interface TrackRepository extends JpaRepository<Track, Integer> {
   //  Track.TrackRecord findTrackRecord(@Param("id") Integer trackId);
 
   @Query(
-      "SELECT new TrackRecord(t.name,a.title,t.composer) FROM Track t JOIN Album a ON t.album.albumId=a.albumId where t.trackId=:id")
+      "SELECT new TrackRecord(t.name,a.title,t.composer) FROM Track t JOIN Album a ON"
+          + " t.album.albumId=a.albumId where t.trackId=:id")
   Track.TrackRecord findTrackRecordWithUtility(@Param("id") Integer trackId);
 }
