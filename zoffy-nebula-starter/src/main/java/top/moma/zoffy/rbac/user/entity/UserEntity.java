@@ -1,8 +1,18 @@
 package top.moma.zoffy.rbac.user.entity;
 
-import jakarta.persistence.*;
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.Index;
+import jakarta.persistence.Table;
 import java.util.Objects;
-import lombok.*;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
 import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.Hibernate;
@@ -19,9 +29,10 @@ import top.moma.zoffy.common.base.BaseDTO;
 @Table(
     name = "t_zoffy_rbac_user",
     indexes = {
-      @Index(name = "email", columnList = "email", unique = true),
+        @Index(name = "email", columnList = "email", unique = true),
     })
 public class UserEntity extends BaseDTO {
+
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   @Column(name = "user_id")

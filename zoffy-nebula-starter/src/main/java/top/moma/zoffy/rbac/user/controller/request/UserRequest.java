@@ -10,6 +10,7 @@ import top.moma.zoffy.rbac.user.entity.UserEntity;
 @Data
 @PasswordMatches
 public class UserRequest implements java.io.Serializable {
+
   @NotNull @NotEmpty private String firstName;
   @NotNull @NotEmpty private String lastName;
   @NotNull @NotEmpty private String password;

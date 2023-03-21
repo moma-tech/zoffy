@@ -4,7 +4,8 @@ import top.moma.zoffy.common.enumerations.HttpResponseEnum;
 
 public class SuccessResponse<T> extends Response {
 
-  private SuccessResponse() {}
+  private SuccessResponse() {
+  }
 
   public SuccessResponse(HttpResponseEnum httpResponseEnum, T data) {
     setSuccess(true);

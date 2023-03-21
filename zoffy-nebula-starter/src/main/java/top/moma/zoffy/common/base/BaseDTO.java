@@ -21,6 +21,7 @@ import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 @MappedSuperclass
 @EntityListeners(AuditingEntityListener.class)
 public class BaseDTO implements java.io.Serializable {
+
   @Column(name = "create_time")
   @CreatedDate
   private LocalDateTime createTime;

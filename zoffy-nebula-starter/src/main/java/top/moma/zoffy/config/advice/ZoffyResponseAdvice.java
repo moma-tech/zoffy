@@ -1,6 +1,5 @@
 package top.moma.zoffy.config.advice;
 
-import java.util.Locale;
 import java.util.Objects;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -16,6 +15,7 @@ import top.moma.zoffy.support.reaponse.SuccessResponse;
 
 @RestControllerAdvice
 public class ZoffyResponseAdvice implements ResponseBodyAdvice<Object> {
+
   @Override
   public boolean supports(
       MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
@@ -25,8 +25,7 @@ public class ZoffyResponseAdvice implements ResponseBodyAdvice<Object> {
             || Objects.requireNonNull(returnType.getMethod())
                 .isAnnotationPresent(IgnoreResponseAdvice.class)
             || returnType.getParameterType().isAssignableFrom(Response.class)
-            || Response.class.isAssignableFrom(returnType.getParameterType())
-            || returnType.getClass().getPackageName().toLowerCase(Locale.ROOT).contains("swagger");
+            || Response.class.isAssignableFrom(returnType.getParameterType());
     return !result;
   }
 

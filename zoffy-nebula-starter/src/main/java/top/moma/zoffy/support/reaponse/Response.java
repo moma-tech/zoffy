@@ -1,6 +1,7 @@
 package top.moma.zoffy.support.reaponse;
 
 public class Response implements java.io.Serializable {
+
   private Boolean success;
   private Integer code;
   private String message;
