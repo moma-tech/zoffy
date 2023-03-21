@@ -1,10 +1,9 @@
 package top.moma.zoffy.config;
 
-import io.hypersistence.utils.hibernate.type.util.ClassImportIntegrator;
+import java.util.ArrayList;
 import java.util.List;
 import org.hibernate.integrator.spi.Integrator;
 import org.hibernate.jpa.boot.spi.IntegratorProvider;
-import top.moma.zoffy.chinook.track.entity.Track;
 
 /**
  * HibernateIntegratorProvider
@@ -15,8 +14,6 @@ import top.moma.zoffy.chinook.track.entity.Track;
 public class HibernateIntegratorProvider implements IntegratorProvider {
   @Override
   public List<Integrator> getIntegrators() {
-    ClassImportIntegrator classImportIntegrator =
-        new ClassImportIntegrator(List.of(Track.TrackRecord.class));
-    return List.of(classImportIntegrator);
+    return new ArrayList<>();
   }
 }

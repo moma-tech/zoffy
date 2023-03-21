@@ -1,16 +1,13 @@
 spring:
   datasource:
-    url: jdbc:postgresql://127.0.0.1:5432/chinook
+    url: jdbc:postgresql://127.0.0.1:5432/zoffy
     username: postgres
     password: 1qaw3@123
   jpa:
-    hibernate:
-      naming:
-        physical-strategy: org.hibernate.boot.model.naming.PhysicalNamingStrategyStandardImpl
-    properties:
-      hibernate:
-        integrator_provider: top.moma.zoffy.config.HibernateIntegratorProvider
     database-platform: org.hibernate.dialect.PostgreSQLDialect
+    show-sql: true
+    hibernate:
+      ddl-auto: none
 # springdoc-openapi项目配置
 springdoc:
   swagger-ui:
@@ -22,7 +19,7 @@ springdoc:
   group-configs:
     - group: 'default'
       paths-to-match: '/**'
-      packages-to-scan: top.moma.zoffy
+      packages-to-scan: top.moma.zoffy.rbac
 # knife4j的增强配置，不需要增强可以不配
 knife4j:
   enable: true
