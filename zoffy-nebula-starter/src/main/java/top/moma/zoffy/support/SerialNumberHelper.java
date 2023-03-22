@@ -1,13 +1,20 @@
 package top.moma.zoffy.support;
 
 import java.net.InetAddress;
-import java.time.LocalDate;
-import java.time.format.DateTimeFormatter;
 import lombok.extern.slf4j.Slf4j;
 import top.moma.m64.core.exceptions.M64Exception;
+import top.moma.m64.core.helper.date.DateTimeHelper;
 
+/**
+ * SerialNumberHelper
+ *
+ * <p>仿雪花序列号生成
+ *
+ * @version 1.0
+ * @author Created by ivan at 18:14.
+ */
 @Slf4j
-public class SerialNumberUtil {
+public class SerialNumberHelper {
 
   private static final long START_STAMP = 1675303377983L;
   private static final long SEQUENCE_BIT = 12;
@@ -21,9 +28,6 @@ public class SerialNumberUtil {
   private static final long MACHINE_ADDRESS;
   private long sequence = 0L;
   private long lastStamp = -1L;
-
-  private static final DateTimeFormatter DATE_TIME_FORMATTER =
-      DateTimeFormatter.ofPattern("yyyyMMdd");
 
   static {
     InetAddress localIp = IpHelper.getLocalIp();
@@ -62,19 +66,28 @@ public class SerialNumberUtil {
     return System.currentTimeMillis();
   }
 
-  private SerialNumberUtil() {}
+  private SerialNumberHelper() {}
 
-  private static SerialNumberUtil serialNumberUtil;
+  private static SerialNumberHelper serialNumberHelper;
 
-  private static synchronized SerialNumberUtil getInstance() {
-    if (serialNumberUtil == null) {
-      serialNumberUtil = new SerialNumberUtil();
+  private static synchronized SerialNumberHelper getInstance() {
+    if (serialNumberHelper == null) {
+      serialNumberHelper = new SerialNumberHelper();
     }
-    return serialNumberUtil;
+    return serialNumberHelper;
   }
-
+  /**
+   * getSerialNumber
+   *
+   * <p>入口方法
+   *
+   * <p>当前时间戳+STAMP+DATA_CENTER+MACHINE_ADDRESS+Sequence
+   *
+   * @return java.lang.String
+   * @author Created by ivan
+   * @since 2023/3/22 18:18
+   */
   public static String getSerialNumber() {
-    String localDate = LocalDate.now().format(DATE_TIME_FORMATTER);
-    return localDate + getInstance().nextId();
+    return DateTimeHelper.getDateTime8Length() + getInstance().nextId();
   }
 }

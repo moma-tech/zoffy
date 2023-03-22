@@ -1,6 +1,8 @@
 package top.moma.zoffy.annotation;
 
-import static java.lang.annotation.ElementType.*;
+import static java.lang.annotation.ElementType.ANNOTATION_TYPE;
+import static java.lang.annotation.ElementType.FIELD;
+import static java.lang.annotation.ElementType.TYPE;
 
 import jakarta.validation.Constraint;
 import jakarta.validation.Payload;

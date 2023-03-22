@@ -2,6 +2,16 @@ package top.moma.zoffy.common.enumerations;
 
 import jakarta.servlet.http.HttpServletResponse;
 
+/**
+ * HttpResponseEnum
+ *
+ * <p>HTTP通用响应转换枚举
+ *
+ * <p>TODO 扩展i18n
+ *
+ * @version 1.0
+ * @author Created by ivan at 16:31.
+ */
 public enum HttpResponseEnum {
   // 2xx Success
   /** 200 */

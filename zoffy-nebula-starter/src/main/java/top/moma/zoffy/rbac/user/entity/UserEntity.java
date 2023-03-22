@@ -16,8 +16,16 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.Hibernate;
-import top.moma.zoffy.common.base.BaseDTO;
+import top.moma.zoffy.common.base.BaseEntity;
 
+/**
+ * UserEntity
+ *
+ * <p>JPA数据对象
+ *
+ * @version 1.0
+ * @author Created by ivan at 17:56.
+ */
 @Getter
 @Setter
 @ToString
@@ -29,9 +37,9 @@ import top.moma.zoffy.common.base.BaseDTO;
 @Table(
     name = "t_zoffy_rbac_user",
     indexes = {
-        @Index(name = "email", columnList = "email", unique = true),
+      @Index(name = "email", columnList = "email", unique = true),
     })
-public class UserEntity extends BaseDTO {
+public class UserEntity extends BaseEntity {
 
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)

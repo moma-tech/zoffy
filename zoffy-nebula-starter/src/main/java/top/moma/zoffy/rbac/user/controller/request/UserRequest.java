@@ -3,12 +3,10 @@ package top.moma.zoffy.rbac.user.controller.request;
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
-import top.moma.zoffy.annotation.PasswordMatches;
 import top.moma.zoffy.annotation.ValidEmail;
 import top.moma.zoffy.rbac.user.entity.UserEntity;
 
 @Data
-@PasswordMatches
 public class UserRequest implements java.io.Serializable {
 
   @NotNull @NotEmpty private String firstName;
