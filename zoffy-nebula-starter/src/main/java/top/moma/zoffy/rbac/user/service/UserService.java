@@ -2,7 +2,7 @@ package top.moma.zoffy.rbac.user.service;
 
 import java.util.List;
 import top.moma.zoffy.rbac.user.controller.request.UserRequest;
-import top.moma.zoffy.rbac.user.entity.UserEntity;
+import top.moma.zoffy.rbac.user.entity.ZoffyUser;
 
 public interface UserService {
 
@@ -19,25 +19,21 @@ public interface UserService {
   boolean checkEmailExisted(String email);
 
   /**
-   * addUser
-   *
-   * <p>新增数据
+   * description addUser
    *
    * @param userRequest userRequest
-   * @return top.moma.zoffy.rbac.user.entity.UserEntity
+   * @return top.moma.zoffy.rbac.user.entity.ZoffyUser
    * @author Created by ivan
-   * @since 2023/3/22 17:57
+   * @since 2023/3/27 14:21
    */
-  UserEntity addUser(UserRequest userRequest);
+  ZoffyUser addUser(UserRequest userRequest);
 
   /**
    * description listUser
    *
-   * <p>数据列表
-   *
-   * @return java.util.List<top.moma.zoffy.rbac.user.entity.UserEntity>
+   * @return java.util.List<top.moma.zoffy.rbac.user.entity.ZoffyUser>
    * @author Created by ivan
-   * @since 2023/3/22 17:57
+   * @since 2023/3/27 14:21
    */
-  List<UserEntity> listUser();
+  List<ZoffyUser> listUser();
 }

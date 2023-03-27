@@ -51,8 +51,8 @@ public class BaseEntity implements java.io.Serializable {
   private Long updateUser;
 
   /** 数据是否逻辑删除 */
-  @Column(name = "deleted")
-  private int deleted = 0;
+  @Column(name = "delete_mark")
+  private int deleteMark = 0;
 
   /** 数据备注 */
   @Column(name = "remarks")

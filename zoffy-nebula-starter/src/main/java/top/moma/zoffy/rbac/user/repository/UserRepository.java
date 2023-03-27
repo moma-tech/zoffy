@@ -1,16 +1,17 @@
 package top.moma.zoffy.rbac.user.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
-import top.moma.zoffy.rbac.user.entity.UserEntity;
+import top.moma.zoffy.rbac.user.entity.ZoffyUser;
 
-public interface UserRepository extends JpaRepository<UserEntity, Long> {
+public interface UserRepository extends JpaRepository<ZoffyUser, Long> {
+
   /**
-   * findByEmail
+   * description findByUserEmail
    *
    * @param email email
-   * @return top.moma.zoffy.rbac.user.entity.UserEntity
+   * @return top.moma.zoffy.rbac.user.entity.ZoffyUser
    * @author Created by ivan
-   * @since 2023/3/22 17:56
+   * @since 2023/3/27 14:20
    */
-  UserEntity findByEmail(String email);
+  ZoffyUser findByUserEmail(String email);
 }

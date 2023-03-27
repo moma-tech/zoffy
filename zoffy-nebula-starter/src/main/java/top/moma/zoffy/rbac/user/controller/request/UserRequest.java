@@ -4,23 +4,24 @@ import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;
 import lombok.Data;
 import top.moma.zoffy.annotation.ValidEmail;
-import top.moma.zoffy.rbac.user.entity.UserEntity;
+import top.moma.zoffy.rbac.user.entity.ZoffyUser;
 
 @Data
 public class UserRequest implements java.io.Serializable {
 
-  @NotNull @NotEmpty private String firstName;
-  @NotNull @NotEmpty private String lastName;
+  @NotNull @NotEmpty private String userName;
   @NotNull @NotEmpty private String password;
+  @NotNull @NotEmpty private String phone;
   @NotNull @NotEmpty @ValidEmail private String email;
+
   private String matchingPassword;
 
-  public UserEntity formEntity() {
-    UserEntity user = new UserEntity();
-    user.setFirstName(firstName);
-    user.setLastName(lastName);
-    user.setEmail(email);
-    user.setPassword(password);
+  public ZoffyUser formEntity() {
+    ZoffyUser user = new ZoffyUser();
+    user.setUserName(userName);
+    user.setUserPassword(password);
+    user.setUserPhone(phone);
+    user.setUserEmail(email);
     return user;
   }
 }

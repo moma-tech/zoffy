@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.moma.zoffy.annotation.ZoffyResponse;
 import top.moma.zoffy.rbac.user.controller.request.UserRequest;
-import top.moma.zoffy.rbac.user.entity.UserEntity;
+import top.moma.zoffy.rbac.user.entity.ZoffyUser;
 import top.moma.zoffy.rbac.user.service.UserService;
 
 @RestController
@@ -31,13 +31,13 @@ public class UserController {
 
   @Operation(summary = "Add User")
   @PostMapping("/add")
-  public UserEntity addUser(@RequestBody @Valid UserRequest userRequest) {
+  public ZoffyUser addUser(@RequestBody @Valid UserRequest userRequest) {
     return userService.addUser(userRequest);
   }
 
   @Operation(summary = "List User")
   @PostMapping("/list")
-  public List<UserEntity> listUser() {
+  public List<ZoffyUser> listUser() {
     return userService.listUser();
   }
 }
