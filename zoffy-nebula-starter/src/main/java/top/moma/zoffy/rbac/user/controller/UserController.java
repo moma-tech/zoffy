@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import top.moma.zoffy.annotation.ZoffyResponse;
-import top.moma.zoffy.rbac.user.controller.request.UserRequest;
+import top.moma.zoffy.rbac.user.dto.UserRequest;
 import top.moma.zoffy.rbac.user.entity.ZoffyUser;
 import top.moma.zoffy.rbac.user.service.UserService;
 

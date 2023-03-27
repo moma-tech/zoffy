@@ -1,9 +1,11 @@
 package top.moma.zoffy.rbac.user.repository;
 
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.JpaSpecificationExecutor;
 import top.moma.zoffy.rbac.user.entity.ZoffyUser;
 
-public interface UserRepository extends JpaRepository<ZoffyUser, Long> {
+public interface UserRepository
+    extends JpaRepository<ZoffyUser, Long>, JpaSpecificationExecutor<ZoffyUser> {
 
   /**
    * description findByUserEmail
@@ -13,5 +15,7 @@ public interface UserRepository extends JpaRepository<ZoffyUser, Long> {
    * @author Created by ivan
    * @since 2023/3/27 14:20
    */
-  ZoffyUser findByUserEmail(String email);
+  ZoffyUser findByUserEmailAndDeleteMarkFalse(String email);
+
+  ZoffyUser findByUserPhoneAndDeleteMarkFalse(String phone);
 }

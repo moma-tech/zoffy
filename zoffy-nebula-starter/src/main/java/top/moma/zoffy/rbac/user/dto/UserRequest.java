@@ -1,4 +1,4 @@
-package top.moma.zoffy.rbac.user.controller.request;
+package top.moma.zoffy.rbac.user.dto;
 
 import jakarta.validation.constraints.NotEmpty;
 import jakarta.validation.constraints.NotNull;

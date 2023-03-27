@@ -90,4 +90,8 @@ public class SerialNumberHelper {
   public static String getSerialNumber() {
     return DateTimeHelper.getDateTime8Length() + getInstance().nextId();
   }
+
+  public static Long getId() {
+    return getInstance().nextId();
+  }
 }

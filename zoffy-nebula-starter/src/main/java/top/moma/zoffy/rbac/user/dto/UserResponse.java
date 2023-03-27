@@ -1,4 +1,4 @@
-package top.moma.zoffy.rbac.user.controller.response;
+package top.moma.zoffy.rbac.user.dto;
 
 import lombok.Data;
 

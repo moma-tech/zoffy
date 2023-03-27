@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Objects;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import top.moma.zoffy.rbac.user.controller.request.UserRequest;
+import top.moma.zoffy.rbac.user.dto.UserRequest;
 import top.moma.zoffy.rbac.user.entity.ZoffyUser;
 import top.moma.zoffy.rbac.user.repository.UserRepository;
 
@@ -15,7 +15,7 @@ public class UserServiceImpl implements UserService {
 
   @Override
   public boolean checkEmailExisted(String email) {
-    ZoffyUser user = userRepository.findByUserEmail(email);
+    ZoffyUser user = userRepository.findByUserEmailAndDeleteMarkFalse(email);
     return Objects.nonNull(user);
   }
 

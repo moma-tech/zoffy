@@ -15,6 +15,7 @@ import lombok.ToString;
 import lombok.experimental.Accessors;
 import lombok.experimental.SuperBuilder;
 import org.hibernate.Hibernate;
+import org.hibernate.annotations.GenericGenerator;
 import top.moma.zoffy.common.base.BaseEntity;
 
 /**
@@ -41,7 +42,8 @@ import top.moma.zoffy.common.base.BaseEntity;
 public class ZoffyRoleResource extends BaseEntity {
   /** 表内主键 */
   @Id
-  @GeneratedValue
+  @GeneratedValue(generator = "cus_id")
+  @GenericGenerator(name = "cus_id", strategy = "top.moma.zoffy.support.db.DataIdGenerator")
   @Column(name = "id")
   private String id;
   /** 角色主键 */
@@ -68,15 +70,15 @@ public class ZoffyRoleResource extends BaseEntity {
     return Objects.equals(id, that.id);
   }
 
-  private static final String RR_ID = "id";
-  private static final String ROLE_ID = "role_id";
-  private static final String RESOURCE_ID = "resource_id";
-  private static final String DELETE_MARK = "delete_mark";
-  private static final String REMARKS = "remarks";
-  private static final String TENANT_ID = "tenant_id";
-  private static final String REVISION = "revision";
-  private static final String CREATE_USER = "create_user";
-  private static final String CREATE_TIME = "create_time";
-  private static final String UPDATE_USER = "update_user";
-  private static final String UPDATE_TIME = "update_time";
+  public static final String RR_ID = "id";
+  public static final String ROLE_ID = "role_id";
+  public static final String RESOURCE_ID = "resource_id";
+  public static final String DELETE_MARK = "delete_mark";
+  public static final String REMARKS = "remarks";
+  public static final String TENANT_ID = "tenant_id";
+  public static final String REVISION = "revision";
+  public static final String CREATE_USER = "create_user";
+  public static final String CREATE_TIME = "create_time";
+  public static final String UPDATE_USER = "update_user";
+  public static final String UPDATE_TIME = "update_time";
 }

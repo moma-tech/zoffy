@@ -1,7 +1,7 @@
 package top.moma.zoffy.rbac.user.service;
 
 import java.util.List;
-import top.moma.zoffy.rbac.user.controller.request.UserRequest;
+import top.moma.zoffy.rbac.user.dto.UserRequest;
 import top.moma.zoffy.rbac.user.entity.ZoffyUser;
 
 public interface UserService {
