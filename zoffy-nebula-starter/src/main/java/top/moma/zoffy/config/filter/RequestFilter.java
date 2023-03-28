@@ -17,7 +17,7 @@ import org.springframework.web.util.UrlPathHelper;
 import top.moma.m64.core.helper.regular.RegularHelper;
 import top.moma.zoffy.common.constants.ApiConstants;
 import top.moma.zoffy.framework.trace.TraceWorker;
-import top.moma.zoffy.support.request.RequestWrapper;
+import top.moma.zoffy.support.request.CachedBodyHttpServletRequest;
 
 /**
  * RequestFilter
@@ -80,9 +80,12 @@ public class RequestFilter implements Filter {
     StandardServletMultipartResolver commonsMultipartResolver =
         new StandardServletMultipartResolver();
     if (!commonsMultipartResolver.isMultipart(httpRequest)) {
-      servletRequest = new RequestWrapper((HttpServletRequest) servletRequest);
+      CachedBodyHttpServletRequest cachedBodyHttpServletRequest =
+          new CachedBodyHttpServletRequest((HttpServletRequest) servletRequest);
+      filterChain.doFilter(cachedBodyHttpServletRequest, servletResponse);
+    } else {
+      filterChain.doFilter(servletRequest, servletResponse);
     }
-    filterChain.doFilter(servletRequest, servletResponse);
   }
 
   @Override

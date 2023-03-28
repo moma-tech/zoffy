@@ -8,6 +8,7 @@ import jakarta.validation.ConstraintViolationException;
 import java.util.List;
 import java.util.Optional;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.validation.FieldError;
 import org.springframework.validation.ObjectError;
 import org.springframework.web.bind.MethodArgumentNotValidException;
@@ -35,6 +36,7 @@ import top.moma.zoffy.support.reaponse.FailedResponse;
 @RestControllerAdvice
 @ZoffyResponse
 public class GeneralExceptionHandler {
+
   /**
    * handleM64Exception
    *
@@ -175,5 +177,41 @@ public class GeneralExceptionHandler {
         .ifPresent(reference -> builder.append(reference.getFieldName()));
     builder.append(" Expected as: ").append(ex.getTargetType());
     return FailedResponse.failed(HttpResponseEnum.BAD_REQUEST, builder.toString());
+  }
+
+  /**
+   * description handleDataIntegrityViolationException
+   *
+   * @param ex ex
+   * @param request request
+   * @param httpServletRequest httpServletRequest
+   * @return top.moma.zoffy.support.reaponse.FailedResponse
+   * @author Created by ivan
+   * @since 2023/3/28 11:54
+   */
+  @ExceptionHandler(DataIntegrityViolationException.class)
+  public FailedResponse handleDataIntegrityViolationException(
+      DataIntegrityViolationException ex,
+      WebRequest request,
+      HttpServletRequest httpServletRequest) {
+    log.debug("DataIntegrityViolationException >>>> {}", (Object) ex);
+    return FailedResponse.failed(HttpResponseEnum.BAD_REQUEST, ex.getCause().getLocalizedMessage());
+  }
+
+  /**
+   * description handleDefault
+   *
+   * @param ex ex
+   * @param request request
+   * @param httpServletRequest httpServletRequest
+   * @return top.moma.zoffy.support.reaponse.FailedResponse
+   * @author Created by ivan
+   * @since 2023/3/28 11:56
+   */
+  @ExceptionHandler(RuntimeException.class)
+  public FailedResponse handleDefault(
+      M64Exception ex, WebRequest request, HttpServletRequest httpServletRequest) {
+    log.error("RuntimeException >>>> {}", (Object) ex);
+    return FailedResponse.failed(HttpResponseEnum.INTERNAL_SERVER_ERROR, ex.getMessage());
   }
 }
