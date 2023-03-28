@@ -45,38 +45,35 @@ public class ZoffyResource extends BaseEntity {
   @Id
   @GeneratedValue(generator = "cus_id")
   @GenericGenerator(name = "cus_id", strategy = "top.moma.zoffy.support.db.DataIdGenerator")
-  @Column(name = "resource_id")
+  @Column(name = "resource_id", nullable = false)
   private Long resourceId;
   /** 资源名称 */
   @Column(name = "resource_name", nullable = false)
   private String resourceName;
   /** 父级资源id;如果是顶级资源，父节点为0 */
-  @Column(name = "parent_resource_id", nullable = false)
-  private Long parentResourceId = 0L;
+  @Column(name = "parent_resource_id", nullable = false, columnDefinition = "bigint default 0")
+  private Long parentResourceId;
   /** 资源树路径;所有父级资源主键，以英文逗号隔开如：一级，二级等 */
   @Column(name = "resource_path")
   private String resourcePath;
   /** 资源类型 */
-  @Column(name = "resource_type", nullable = false)
-  private String resourceType = "0";
+  @Column(name = "resource_type", nullable = false, columnDefinition = "varchar default 0")
+  private String resourceType;
   /** 资源URI */
-  @Column(name = "resource_uri", unique = true, nullable = false)
+  @Column(name = "resource_uri", nullable = false)
   private String resourceUri;
   /** 资源鉴权类型 */
-  @Column(name = "resource_auth_type", nullable = false)
-  private String resourceAuthType = "0";
+  @Column(name = "resource_auth_type", nullable = false, columnDefinition = "varchar default 0")
+  private String resourceAuthType;
   /** 资源标识 */
   @Column(name = "resource_code")
   private String resourceCode;
   /** 资源层级;资源树层级 */
-  @Column(name = "resource_level")
-  private Integer resourceLevel = 1;
+  @Column(name = "resource_level", columnDefinition = "integer default 1")
+  private Integer resourceLevel;
   /** 资源排序 */
-  @Column(name = "sort_order")
-  private Integer sortOrder = 1;
-
-  @ManyToMany(mappedBy = "resourceSet")
-  private Set<ZoffyRole> roleSet;
+  @Column(name = "sort_order", columnDefinition = "integer default 1")
+  private Integer sortOrder;
 
   @Override
   public int hashCode() {
@@ -113,4 +110,7 @@ public class ZoffyResource extends BaseEntity {
   public static final String CREATE_TIME = "create_time";
   public static final String UPDATE_USER = "update_user";
   public static final String UPDATE_TIME = "update_time";
+
+  @ManyToMany(mappedBy = "resourceSet")
+  private Set<ZoffyRole> roleSet;
 }

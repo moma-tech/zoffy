@@ -49,27 +49,20 @@ public class ZoffyUser extends BaseEntity {
   @Id
   @GeneratedValue(generator = "cus_id")
   @GenericGenerator(name = "cus_id", strategy = "top.moma.zoffy.support.db.DataIdGenerator")
-  @Column(name = "user_id")
+  @Column(name = "user_id", nullable = false)
   private Long userId;
   /** 用户名 */
-  @Column(name = "user_name")
+  @Column(name = "user_name", nullable = false)
   private String userName;
   /** 用户密码 */
-  @Column(name = "user_password")
+  @Column(name = "user_password", nullable = false)
   private String userPassword;
   /** 用户邮箱 */
-  @Column(name = "user_email")
+  @Column(name = "user_email", nullable = false)
   private String userEmail;
   /** 用户手机号 */
-  @Column(name = "user_phone")
+  @Column(name = "user_phone", nullable = false)
   private String userPhone;
-
-  @ManyToMany(fetch = FetchType.EAGER)
-  @JoinTable(
-      name = "zoffy_user_role",
-      joinColumns = @JoinColumn(name = "user_id"),
-      inverseJoinColumns = @JoinColumn(name = "role_id"))
-  private Set<ZoffyRole> roleSet;
 
   @Override
   public int hashCode() {
@@ -101,4 +94,11 @@ public class ZoffyUser extends BaseEntity {
   public static final String CREATE_TIME = "create_time";
   public static final String UPDATE_USER = "update_user";
   public static final String UPDATE_TIME = "update_time";
+
+  @ManyToMany(fetch = FetchType.EAGER)
+  @JoinTable(
+      name = "zoffy_user_role",
+      joinColumns = @JoinColumn(name = "user_id"),
+      inverseJoinColumns = @JoinColumn(name = "role_id"))
+  private Set<ZoffyRole> roleSet;
 }

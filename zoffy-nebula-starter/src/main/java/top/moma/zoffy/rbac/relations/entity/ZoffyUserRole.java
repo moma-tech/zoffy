@@ -44,13 +44,13 @@ public class ZoffyUserRole extends BaseEntity {
   @Id
   @GeneratedValue(generator = "cus_id")
   @GenericGenerator(name = "cus_id", strategy = "top.moma.zoffy.support.db.DataIdGenerator")
-  @Column(name = "id")
+  @Column(name = "id", nullable = false)
   private Long id;
   /** 用户表主键 */
-  @Column(name = "user_id")
+  @Column(name = "user_id", nullable = false)
   private Long userId;
   /** 角色表主键 */
-  @Column(name = "role_id")
+  @Column(name = "role_id", nullable = false)
   private Long roleId;
 
   @Override
