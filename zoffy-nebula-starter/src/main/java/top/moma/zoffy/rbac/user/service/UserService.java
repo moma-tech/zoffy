@@ -2,38 +2,38 @@ package top.moma.zoffy.rbac.user.service;
 
 import java.util.List;
 import top.moma.zoffy.rbac.user.dto.UserRequest;
-import top.moma.zoffy.rbac.user.entity.ZoffyUser;
+import top.moma.zoffy.rbac.user.dto.UserResponse;
 
 public interface UserService {
 
   /**
-   * checkEmailExisted
+   * checkEmailValid
    *
-   * <p>邮箱是否已占用
+   * <p>邮箱是否可用
    *
    * @param email email
    * @return boolean
    * @author Created by ivan
    * @since 2023/3/22 17:56
    */
-  boolean checkEmailExisted(String email);
+  boolean checkEmailValid(String email);
 
   /**
    * description addUser
    *
    * @param userRequest userRequest
-   * @return top.moma.zoffy.rbac.user.entity.ZoffyUser
+   * @return top.moma.zoffy.rbac.user.dto.UserResponse
    * @author Created by ivan
-   * @since 2023/3/27 14:21
+   * @since 2023/3/28 15:12
    */
-  ZoffyUser addUser(UserRequest userRequest);
+  UserResponse addUser(UserRequest userRequest);
 
   /**
    * description listUser
    *
-   * @return java.util.List<top.moma.zoffy.rbac.user.entity.ZoffyUser>
+   * @return java.util.List<top.moma.zoffy.rbac.user.dto.UserResponse>
    * @author Created by ivan
-   * @since 2023/3/27 14:21
+   * @since 2023/3/28 15:12
    */
-  List<ZoffyUser> listUser();
+  List<UserResponse> listUser();
 }

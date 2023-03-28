@@ -45,13 +45,13 @@ public class ZoffyRoleResource extends BaseEntity {
   @GeneratedValue(generator = "cus_id")
   @GenericGenerator(name = "cus_id", strategy = "top.moma.zoffy.support.db.DataIdGenerator")
   @Column(name = "id", nullable = false)
-  private String id;
+  private Long id;
   /** 角色主键 */
   @Column(name = "role_id", nullable = false)
-  private String roleId;
+  private Long roleId;
   /** 资源主键 */
   @Column(name = "resource_id", nullable = false)
-  private String resourceId;
+  private Long resourceId;
 
   @Override
   public int hashCode() {

@@ -11,6 +11,7 @@ import lombok.experimental.SuperBuilder;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import top.moma.zoffy.common.constants.GeneralConstants;
 
 /**
  * BaseEntity
@@ -50,7 +51,7 @@ public class BaseEntity implements java.io.Serializable {
 
   /** 数据是否逻辑删除 */
   @Column(name = "delete_mark")
-  private int deleteMark = 0;
+  private int deleteMark = GeneralConstants.DB_DATA_AVAILABLE;
 
   /** 数据备注 */
   @Column(name = "remarks")

@@ -67,6 +67,25 @@ public class FailedResponse extends Response {
   }
 
   /**
+   * description failed
+   *
+   * @param code code
+   * @param errorMessage errorMessage
+   * @param errorDetails errorDetails
+   * @return top.moma.zoffy.support.reaponse.FailedResponse
+   * @author Created by ivan
+   * @since 2023/3/28 15:32
+   */
+  public static FailedResponse failed(Integer code, String errorMessage, String errorDetails) {
+    FailedResponse failedResponse = new FailedResponse();
+    failedResponse.setSuccess(false);
+    failedResponse.setCode(code);
+    failedResponse.setMessage(errorMessage);
+    failedResponse.setErrorDetails(errorDetails);
+    return failedResponse;
+  }
+
+  /**
    * failed
    *
    * <p>基于HTTP状态，附加错误信息

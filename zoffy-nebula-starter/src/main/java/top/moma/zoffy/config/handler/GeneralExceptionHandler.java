@@ -20,6 +20,7 @@ import org.springframework.web.context.request.WebRequest;
 import top.moma.m64.core.exceptions.M64Exception;
 import top.moma.zoffy.annotation.ZoffyResponse;
 import top.moma.zoffy.common.enumerations.HttpResponseEnum;
+import top.moma.zoffy.common.exception.BusinessException;
 import top.moma.zoffy.support.reaponse.FailedResponse;
 
 /**
@@ -36,6 +37,24 @@ import top.moma.zoffy.support.reaponse.FailedResponse;
 @RestControllerAdvice
 @ZoffyResponse
 public class GeneralExceptionHandler {
+  /**
+   * handleM64Exception
+   *
+   * <p>业务异常自定义响应
+   *
+   * @param ex ex
+   * @param request request
+   * @param httpServletRequest httpServletRequest
+   * @return top.moma.zoffy.support.reaponse.FailedResponse
+   * @author Created by ivan
+   * @since 2023/3/22 17:30
+   */
+  @ExceptionHandler(BusinessException.class)
+  public FailedResponse handleBusinessException(
+      BusinessException ex, WebRequest request, HttpServletRequest httpServletRequest) {
+    log.error("BusinessException >>>> {}", (Object) ex);
+    return FailedResponse.failed(ex.getCode(), ex.getMessage());
+  }
 
   /**
    * handleM64Exception
@@ -54,6 +73,25 @@ public class GeneralExceptionHandler {
       M64Exception ex, WebRequest request, HttpServletRequest httpServletRequest) {
     log.error("M64Exception >>>> {}", (Object) ex);
     return FailedResponse.failed(HttpResponseEnum.INTERNAL_SERVER_ERROR, ex.getMessage());
+  }
+
+  /**
+   * description handleIllegalArgumentException
+   *
+   * <p>Assert异常
+   *
+   * @param ex ex
+   * @param request request
+   * @param httpServletRequest httpServletRequest
+   * @return top.moma.zoffy.support.reaponse.FailedResponse
+   * @author Created by ivan
+   * @since 2023/3/28 16:48
+   */
+  @ExceptionHandler(IllegalArgumentException.class)
+  public FailedResponse handleIllegalArgumentException(
+      IllegalArgumentException ex, WebRequest request, HttpServletRequest httpServletRequest) {
+    log.error("IllegalArgumentException >>>> {}", (Object) ex);
+    return FailedResponse.failed(HttpResponseEnum.BAD_REQUEST, ex.getMessage());
   }
 
   /**
@@ -210,8 +248,8 @@ public class GeneralExceptionHandler {
    */
   @ExceptionHandler(RuntimeException.class)
   public FailedResponse handleDefault(
-      M64Exception ex, WebRequest request, HttpServletRequest httpServletRequest) {
-    log.error("RuntimeException >>>> {}", (Object) ex);
-    return FailedResponse.failed(HttpResponseEnum.INTERNAL_SERVER_ERROR, ex.getMessage());
+      RuntimeException ex, WebRequest request, HttpServletRequest httpServletRequest) {
+    log.error("RuntimeException >>>>", ex);
+    return FailedResponse.failed(HttpResponseEnum.INTERNAL_SERVER_ERROR, ex.getClass().getName());
   }
 }

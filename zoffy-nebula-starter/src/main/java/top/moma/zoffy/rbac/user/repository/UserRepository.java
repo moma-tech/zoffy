@@ -15,7 +15,7 @@ public interface UserRepository
    * @author Created by ivan
    * @since 2023/3/27 14:20
    */
-  ZoffyUser findByUserEmailAndDeleteMarkFalse(String email);
+  ZoffyUser findByUserEmailAndDeleteMark(String email, int deleteMark);
 
-  ZoffyUser findByUserPhoneAndDeleteMarkFalse(String phone);
+  ZoffyUser findByUserPhoneAndDeleteMark(String phone, int deleteMark);
 }
