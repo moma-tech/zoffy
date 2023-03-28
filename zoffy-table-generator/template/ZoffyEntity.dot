@@ -1,0 +1,101 @@
+{{  var today=new Date();
+    var fullYear=today.getFullYear();
+    var month=today.getMonth() + 1;
+    var days=today.getDate();
+
+    var pkVarName = "undefinedId";
+    var pkDataType = "String";
+    it.entity.fields.forEach(function(field){
+        if(field.primaryKey){
+            pkVarName = it.func.camel(field.defKey,false);
+            pkDataType = field["type"];
+            return;
+        }
+    });
+
+    var pkgName = it.entity.env.base.nameSpace;
+    var beanClass = it.entity.env.base.codeRoot;
+    var beanVarName = beanClass.charAt(0).toLowerCase()+beanClass.slice(1);
+    var serviceClass = beanClass+'Service';
+    var serviceVarName= beanVarName+'Service';
+
+}}package {{=pkgName}}.entity;
+$blankline
+import jakarta.persistence.Column;
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.Id;
+import jakarta.persistence.Index;
+import jakarta.persistence.Table;
+import java.util.Objects;
+import lombok.AllArgsConstructor;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+import lombok.ToString;
+import lombok.experimental.Accessors;
+import lombok.experimental.SuperBuilder;
+import org.hibernate.Hibernate;
+import org.hibernate.annotations.GenericGenerator;
+import top.moma.zoffy.common.base.BaseEntity;
+$blankline
+
+/**
+ * {{=beanClass}}
+ *
+ * <p>{{=it.entity.defName}};{{=it.entity.comment}}
+ *
+ * @version 1.0
+ * @author Created by ivan at {{=fullYear}}-{{=month}}-{{=days}}.
+ */
+@Getter
+@Setter
+@ToString
+@Accessors(chain = true)
+@SuperBuilder
+@AllArgsConstructor
+@NoArgsConstructor
+@Entity
+@Table(name="{{=it.entity.defKey}}",
+       indexes = {
+      /* @Index(name = "", columnList = "", unique = true),*/
+      })
+public class {{=beanClass}} extends BaseEntity{
+{{~it.entity.fields:field:index}}
+{{? !field.hideInGraph}}
+  /** {{=it.func.join(field.defName,field.comment,';')}} */
+  {{? field.primaryKey }}
+  @Id
+  @GeneratedValue(generator = "cus_id")
+  @GenericGenerator(name = "cus_id", strategy = "top.moma.zoffy.support.db.DataIdGenerator")
+  {{?}}
+  @Column(name = "{{=field.defKey}}"{{? field.notNull }}, nullable = false{{?}}{{? field.defaultValue.length>0 }}, columnDefinition="{{=it.func.lowerCase(field.dbType)}} default {{=field.defaultValue}}"{{?}})
+  private {{=field.type}} {{=it.func.camel(field.defKey,false)}} ;
+{{?}}
+{{~}}
+$blankline
+  @Override
+  public int hashCode() {
+    return getClass().hashCode();
+  }
+$blankline
+  @Override
+  public boolean equals(Object o) {
+    if (this == o) {
+      return true;
+    }
+    if (o == null || Hibernate.getClass(this) != Hibernate.getClass(o)) {
+      return false;
+    }
+    {{=beanClass}} that = ({{=beanClass}}) o;
+{{~it.entity.fields:field:index}}
+{{? field.primaryKey }}
+    return Objects.equals({{=it.func.camel(field.defKey,false)}}, that.{{=it.func.camel(field.defKey,false)}});
+{{?}}
+{{~}}
+  }
+$blankline
+{{~it.entity.fields:field:index}}
+  public static final String {{=it.func.upperCase(field.defKey)}} = "{{=field.defKey}}";
+{{~}}
+}
