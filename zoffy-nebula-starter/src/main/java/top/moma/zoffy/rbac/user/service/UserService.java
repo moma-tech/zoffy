@@ -1,6 +1,7 @@
 package top.moma.zoffy.rbac.user.service;
 
 import java.util.List;
+import org.springframework.security.core.userdetails.UserDetails;
 import top.moma.zoffy.rbac.user.dto.UserRequest;
 import top.moma.zoffy.rbac.user.dto.UserResponse;
 
@@ -36,4 +37,6 @@ public interface UserService {
    * @since 2023/3/28 15:12
    */
   List<UserResponse> listUser();
+
+  UserDetails getUser(String email);
 }

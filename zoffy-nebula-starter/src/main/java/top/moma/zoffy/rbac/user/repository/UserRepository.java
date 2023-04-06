@@ -18,4 +18,9 @@ public interface UserRepository
   ZoffyUser findByUserEmailAndDeleteMark(String email, int deleteMark);
 
   ZoffyUser findByUserPhoneAndDeleteMark(String phone, int deleteMark);
+
+  ZoffyUser findByUserNameAndDeleteMark(String userName, int deleteMark);
+
+  ZoffyUser findByUserEmailAndDeleteMarkOrUserPhoneAndDeleteMark(
+      String email, int deleteMark, String phone, int deleteMark2);
 }

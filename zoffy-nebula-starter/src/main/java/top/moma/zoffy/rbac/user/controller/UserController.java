@@ -5,9 +5,11 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import top.moma.zoffy.annotation.ZoffyResponse;
 import top.moma.zoffy.rbac.user.dto.UserRequest;
@@ -29,15 +31,29 @@ public class UserController {
     return !isExisted;
   }
 
-  @Operation(summary = "Add User")
-  @PostMapping("/add")
-  public UserResponse addUser(@RequestBody @Valid UserRequest userRequest) {
-    return userService.addUser(userRequest);
-  }
-
   @Operation(summary = "List User")
   @PostMapping("/list")
   public List<UserResponse> listUser() {
     return userService.listUser();
+  }
+
+  /**
+   * register UserAccount
+   *
+   * @param userRequest userRequest
+   * @return top.moma.zoffy.rbac.user.dto.UserResponse
+   * @author Created by ivan
+   * @since 2023/4/6 11:30
+   */
+  @Operation(summary = "User Account Registration")
+  @PostMapping("/registration")
+  public UserResponse registerUserAccount(@RequestBody @Valid UserRequest userRequest) {
+    return userService.addUser(userRequest);
+  }
+
+  @Operation(summary = "Get")
+  @PostMapping("/get")
+  public UserDetails loadUserDetail(@RequestParam String email) {
+    return userService.getUser(email);
   }
 }

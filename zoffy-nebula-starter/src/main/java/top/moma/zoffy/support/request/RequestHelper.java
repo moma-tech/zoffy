@@ -65,7 +65,7 @@ public class RequestHelper {
       try {
         if (ObjectHelper.isNotEmpty(request.getInputStream())) {
           String data = IoHelper.toString(request.getInputStream(), StandardCharsets.UTF_8);
-          requestBody = JsonHelper.readValue(data);
+          if (ObjectHelper.isNotEmpty(data)) requestBody = JsonHelper.readValue(data);
         }
       } catch (IOException | M64Exception ex) {
         log.error("getRequestBody error >>>>", ex);
