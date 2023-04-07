@@ -10,7 +10,7 @@ import java.lang.annotation.Documented;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import top.moma.zoffy.support.validator.EmailValidator;
+import top.moma.zoffy.rbac.support.EmailValidator;
 
 @Target({TYPE, FIELD, ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)

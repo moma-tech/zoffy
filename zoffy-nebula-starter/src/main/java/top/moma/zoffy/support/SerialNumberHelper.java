@@ -3,6 +3,7 @@ package top.moma.zoffy.support;
 import java.net.InetAddress;
 import lombok.extern.slf4j.Slf4j;
 import top.moma.m64.core.exceptions.M64Exception;
+import top.moma.m64.core.helper.IpHelper;
 import top.moma.m64.core.helper.date.DateTimeHelper;
 
 /**
@@ -91,6 +92,17 @@ public class SerialNumberHelper {
     return DateTimeHelper.getDateTime8Length() + getInstance().nextId();
   }
 
+  /**
+   * getId
+   *
+   * <p>入口方法2
+   *
+   * <p>STAMP+DATA_CENTER+MACHINE_ADDRESS+Sequence
+   *
+   * @return java.lang.Long
+   * @author Created by ivan
+   * @since 2023/4/7 11:34
+   */
   public static Long getId() {
     return getInstance().nextId();
   }
