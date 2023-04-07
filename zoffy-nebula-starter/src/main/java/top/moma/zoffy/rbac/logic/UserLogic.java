@@ -10,6 +10,7 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import top.moma.m64.core.helper.ObjectHelper;
@@ -29,6 +30,7 @@ public class UserLogic implements UserDetailsService {
   @Autowired UserService userService;
   @Autowired RoleService roleService;
   @Autowired ResourceService resourceService;
+  @Autowired PasswordEncoder passwordEncoder;
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -103,7 +105,8 @@ public class UserLogic implements UserDetailsService {
         userService.checkEmailValid(userRequest.getUserEmail()),
         UserExceptionEnum.USER_EMAIL_EXISTED.msg());
     ZoffyUser addUser = UserDtoMapper.INSTANCE.requestToZoffy(userRequest);
-    return UserDtoMapper.INSTANCE.zoffyToResponse(addUser);
+    addUser.setUserPassword(passwordEncoder.encode(addUser.getUserPassword()));
+    return UserDtoMapper.INSTANCE.zoffyToResponse(userService.addUser(addUser));
   }
 
   /**

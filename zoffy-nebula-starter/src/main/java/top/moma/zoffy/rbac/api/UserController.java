@@ -40,6 +40,7 @@ public class UserController {
   @Operation(summary = "User Account Registration")
   @PostMapping("/registration")
   public UserResponse registerUserAccount(@RequestBody @Valid UserRequest userRequest) {
+
     return userLogic.addUser(userRequest);
   }
 
