@@ -1,0 +1,9 @@
+spring:
+  security:
+    user:
+      name: ivan
+      password: 111111
+      roles: ADMIN
+
+server:
+  port: 9999
