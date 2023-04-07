@@ -5,7 +5,6 @@ import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -46,7 +45,7 @@ public class UserController {
 
   @Operation(summary = "Get")
   @PostMapping("/get")
-  public UserDetails loadUserDetail(@RequestParam String email) {
+  public UserResponse loadUserDetail(@RequestParam String email) {
     return userLogic.getUser(email);
   }
 }

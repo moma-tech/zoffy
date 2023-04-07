@@ -10,7 +10,6 @@ import org.springframework.security.core.userdetails.User;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
-import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.stereotype.Service;
 import org.springframework.util.Assert;
 import top.moma.m64.core.helper.ObjectHelper;
@@ -32,14 +31,17 @@ public class UserLogic implements UserDetailsService {
     if (ObjectHelper.isEmpty(zoffyUser)) {
       throw new UsernameNotFoundException(UserExceptionEnum.USER_ACCOUNT_NOT_EXISTED.msg());
     }
+    boolean userDisabled = false;
+    boolean userExpired = false;
+    boolean userLocked = false;
+
     return User.builder()
         .username(zoffyUser.getUserEmail())
         .password(zoffyUser.getUserPassword())
-        .disabled(false)
-        .accountExpired(false)
-        .accountLocked(false)
+        .disabled(userDisabled)
+        .accountExpired(userExpired)
+        .accountLocked(userLocked)
         .authorities(getAuthorities(zoffyUser.getRoleSet()))
-        .passwordEncoder(NoOpPasswordEncoder.getInstance()::encode)
         .build();
   }
 
@@ -79,7 +81,7 @@ public class UserLogic implements UserDetailsService {
     return userService.listUser().stream().map(UserDtoMapper.INSTANCE::zoffyToResponse).toList();
   }
 
-  public UserResponse getUserByLogKey(String logKey) {
+  public UserResponse getUser(String logKey) {
     ZoffyUser zoffyUser = userService.findUserByLogKey(logKey);
     return UserDtoMapper.INSTANCE.zoffyToResponse(zoffyUser);
   }
