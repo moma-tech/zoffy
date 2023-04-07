@@ -17,13 +17,18 @@ import top.moma.zoffy.rbac.dto.user.UserDtoMapper;
 import top.moma.zoffy.rbac.dto.user.UserRequest;
 import top.moma.zoffy.rbac.dto.user.UserResponse;
 import top.moma.zoffy.rbac.exception.UserExceptionEnum;
+import top.moma.zoffy.rbac.storage.resource.entity.ZoffyResource;
+import top.moma.zoffy.rbac.storage.resource.service.ResourceService;
 import top.moma.zoffy.rbac.storage.role.entity.ZoffyRole;
+import top.moma.zoffy.rbac.storage.role.service.RoleService;
 import top.moma.zoffy.rbac.storage.user.entity.ZoffyUser;
 import top.moma.zoffy.rbac.storage.user.service.UserService;
 
 @Service
 public class UserLogic implements UserDetailsService {
   @Autowired UserService userService;
+  @Autowired RoleService roleService;
+  @Autowired ResourceService resourceService;
 
   @Override
   public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -45,13 +50,44 @@ public class UserLogic implements UserDetailsService {
         .build();
   }
 
+  /**
+   * description getAuthorities
+   *
+   * <p>build user authorities list
+   *
+   * @param roleSet roleSet
+   * @return java.util.List<org.springframework.security.core.GrantedAuthority>
+   * @author Created by ivan
+   * @since 2023/4/7 17:20
+   */
   private List<GrantedAuthority> getAuthorities(Set<ZoffyRole> roleSet) {
     List<GrantedAuthority> authorities = new ArrayList<>();
-    for (ZoffyRole role : roleSet) {
-      authorities.add(new SimpleGrantedAuthority(role.getRoleCode()));
+    List<String> roleResourceList = roleResourceList(roleSet);
+    for (String authority : roleResourceList) {
+      authorities.add(new SimpleGrantedAuthority(authority));
     }
-    authorities.add(new SimpleGrantedAuthority("/user/get"));
     return authorities;
+  }
+
+  /**
+   * roleResourceList
+   *
+   * <p>Query User Role and Resource List
+   *
+   * @param roleSet roleSet
+   * @return java.util.List<java.lang.String>
+   * @author Created by ivan
+   * @since 2023/4/7 17:19
+   */
+  private List<String> roleResourceList(Set<ZoffyRole> roleSet) {
+    List<String> roleResourceList = new ArrayList<>();
+    for (ZoffyRole role : roleSet) {
+      roleResourceList.add(role.getRoleCode());
+      for (ZoffyResource zoffyResource : role.getResourceSet()) {
+        roleResourceList.add(zoffyResource.getResourceCode());
+      }
+    }
+    return roleResourceList;
   }
 
   /**

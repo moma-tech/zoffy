@@ -19,8 +19,7 @@ import top.moma.zoffy.rbac.storage.role.service.RoleService;
 @ZoffyResponse
 @Tag(name = "Role Controller")
 public class RoleController {
-  @Autowired
-  RoleService roleService;
+  @Autowired RoleService roleService;
 
   @Operation(summary = "Add Role")
   @PostMapping("/add")
